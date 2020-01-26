@@ -1,0 +1,8 @@
+= simple_form_for [@post, @post.comments.build], html: {remote: true} do |f|
+  = f.hidden_field :user_id, value: current_user.id
+  .form-row
+    .col-12.md-1.mt-4
+      .form-group
+        = f.input :reply, as: :text, label: 'Comment', input_html: {class: 'form-control', rows: 3}
+        = f.button :submit, 'Comment', id: 'comment_submit', class: 'btn btn-success mr-2'
+        = link_to 'Cancel', :back, class: 'btn btn-secondary'

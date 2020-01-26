@@ -1,0 +1,24 @@
+.standard_wrapper
+  ol.breadcrumb
+    li.breadcrumb-item.active = controller_name.titleize
+    li.ml-auto
+      = link_to fa_icon('plus-circle', text: 'New', class: 'fa-fw', ), new_post_path, class: 'btn btn-primary btn-sm m-0'
+
+  -if @posts.present?
+    .card.shadow
+      .card-body
+        .table-responsive
+          table.table.table-bordered
+            thead
+              tr
+                th ID
+                th Company
+                th Recommendation
+                th User
+            tbody
+              - @posts.each do |post|
+                tr
+                  td = link_to "#{post.id}", post_path( post.id), class: 'text-link'
+                  td = post.company_name
+                  td = post.recommendation
+                  td = post.user.full_name

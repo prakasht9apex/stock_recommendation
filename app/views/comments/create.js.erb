@@ -1,0 +1,2 @@
+$('#comment_reply').val('');
+$("#show_comments").html('<%= j render "posts/comments", comments: @post.comments.reverse %>');

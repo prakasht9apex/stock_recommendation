@@ -1,0 +1,37 @@
+.row
+  .col-3.ml-3
+    .card.shadow
+      .card-header
+        strong Notifications
+      .card-body
+        - if @notifications.unread.present?
+          p.text-muted You have new notifications
+        - else
+          p.text-muted You are up to date with notifications.
+  .col-6
+    .card.shadow
+      .card-header
+        strong Recent
+        span.pull-right
+          = link_to 'Mark All Read', mark_all_read_user_notifications_path(current_user), class: 'text-link'
+
+      .card-body.p-0
+        - @notifications.each do |notification|
+          - if notification.has_read.blank?
+              = link_to user_notification_path(current_user, notification)
+                .alert.alert-custom.m-0.p-4
+                  .row
+                    .col-9
+                      = "#{notification.content}"
+                    .col-3
+                      .text-muted.pull-right
+                        small = "#{time_ago_in_words notification.created_at} ago"
+          - else
+            = link_to user_notification_path(current_user, notification)
+              .m-0.p-4.list-group-item
+                .row
+                  .col-9
+                    = "#{notification.content}"
+                  .col-3
+                    .text-muted.pull-right
+                      small = "#{time_ago_in_words notification.created_at} ago"

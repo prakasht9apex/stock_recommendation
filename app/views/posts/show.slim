@@ -1,0 +1,31 @@
+.standard_wrapper
+  ol.breadcrumb
+    li.breadcrumb-item.active = link_to controller_name.titleize, posts_path(current_user)
+    li.breadcrumb-item.active = (@post.id)
+    li.ml-auto
+      = link_to fa_icon('plus-circle', text: 'New', class: 'fa-fw', ), new_post_path(current_user.id), class: 'btn btn-primary btn-sm m-0'
+
+
+  .form-row
+    .col-12.col-md-12
+      .card
+        .card-header = current_user.full_name
+        .card-body
+          .form-row
+            table
+              tbody
+                tr
+                  td User
+                  td = @post.user.full_name
+                tr
+                  td Company
+                  td = @post.company_name
+                tr
+                  td Recommendation
+                  td = @post.recommendation
+                tr
+                  td Description
+                  td = @post.description
+  = render 'comments/form'
+  .div#show_comments
+    = render 'comments', comments: @post.comments.reverse

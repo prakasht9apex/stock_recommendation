@@ -1,0 +1,16 @@
+.form-row.pt-3
+  .col-12.col-md-12
+    .card
+      .card-header Comments
+      .card-body
+        - comments.each do |comment|
+          - unless comment.new_record?
+            .alert.alert-custom
+              .row
+                .col-10
+                  = comment.reply
+                  br
+                  = "By  #{comment&.user&.first_name}"
+                .text-muted.pull-right
+                  small #{time_ago_in_words (comment.created_at) if comment.created_at.present?} ago
+

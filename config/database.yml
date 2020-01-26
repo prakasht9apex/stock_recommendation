@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: stock_recommendation_development
+  pool: 5
+  username: prakashthakur
+  password: prakashthakur
+  host: localhost

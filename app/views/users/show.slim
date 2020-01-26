@@ -1,0 +1,21 @@
+.standard_wrapper
+  ol.breadcrumb
+    li.breadcrumb-item.active = controller_name.titleize
+
+  .form-row
+    .col-12.col-md-12
+      .card
+        .card-header = @user.full_name
+        .card-body
+          .form-row
+            table
+              tbody
+                tr
+                  td  First Name:
+                  td  = @user.try(:first_name)
+                tr
+                  td  Last Name:
+                  td  = @user.try(:last_name)
+                tr
+                  td  Email Id:
+                  td  = @user.email
